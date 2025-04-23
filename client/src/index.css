@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@plugin 'tailwind-scrollbar';
+
+@theme{
+  --color-primario: #6C3FA4;
+  --color-fondoPrincipal: #12111A;
+  --color-fondoSecundario: #181621;
+  --color-fondoTarjetasChat: #1E1E1E;
+  --color-textoPrincipal: #FFFFFF;
+  --color-textoSecundario: #B0A8BA;
+  --color-acento: #BB86FC;
+  --color-acentoHover: #98FEFF;
+  --color-mensajesPropios: #6C3FA4;
+  --color-mensajesAjenos: #6C3D4A;
+  --color-exito: #00C896;
+  --color-error: #FF5F5F;
+}
