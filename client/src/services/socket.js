@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 
-const socket = io("http://192.168.20.111:3000", {
+const socket = io("http://192.168.246.164:3000", {
   withCredentials: true,
 });
 

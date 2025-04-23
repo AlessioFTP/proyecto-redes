@@ -15,7 +15,7 @@ const servidorHTTP = http.createServer(app);
 
 const io = new servidorSocket(servidorHTTP, {
   cors: {
-    origin: "*",
+    origin: "http://192.168.246.164:5173",
     credentials: true,
   },
 });
@@ -26,7 +26,7 @@ configurarSocket(io);
 
 app.use(
   cors({
-    origin: "*",
+    origin: "http://192.168.246.164:5173",
     credentials: true,
   })
 );
