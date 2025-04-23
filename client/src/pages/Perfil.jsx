@@ -10,7 +10,7 @@ import { usoAutenticacion } from "../context/ContextoAutenticacion";
 
 import { CiChat1 } from "react-icons/ci";
 
-const Chat = () => {
+const Perfil = () => {
   const { usuario, cerrarSesion } = usoAutenticacion();
   const [nombreUsuario, setNombreUsuario] = useState(usuario.nombreUsuario);
   const [mensaje, setMensaje] = useState("");
@@ -103,4 +103,4 @@ const Chat = () => {
   );
 };
 
-export default Chat;
+export default Perfil;

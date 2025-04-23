@@ -1,29 +1,29 @@
-import React from "react";
-import { usoAutenticacion } from "../context/ContextoAutenticacion";
 import { useForm } from "react-hook-form";
+import { usoAutenticacion } from "../context/ContextoAutenticacion";
 import { Link } from "react-router-dom";
 
 import { CiChat1 } from "react-icons/ci";
 import { FaUser } from "react-icons/fa";
 import { GiPadlock } from "react-icons/gi";
 
-function Inicio() {
+function Registro() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { iniciarSesion, errores } = usoAutenticacion();
+  const { registrarse, errores } = usoAutenticacion();
+
   const onSubmit = handleSubmit(async (data) => {
     data.nombreUsuario = data.nombreUsuario.toLowerCase();
-    await iniciarSesion(data);
+    await registrarse(data);
   });
 
   return (
     <div className="h-screen bg-fondoPrincipal flex justify-center items-center">
       <div className="h-auto w-70 bg-fondoSecundario py-8 px-6 rounded-2xl border-1 border-[#23212D] shadow-2xl">
         <div className="text-[#6834FF] text-2xl font-bold flex items-end justify-center space-x-1 mb-6">
-          <h1>ProyectoChat</h1>
+          <h1>Registro</h1>
           <CiChat1 />
         </div>
 
@@ -37,7 +37,7 @@ function Inicio() {
             </div>
           ))}
 
-        <form onSubmit={onSubmit} >
+        <form onSubmit={onSubmit}>
           <div className="flex flex-col items-center">
             <div className="relative w-auto">
               <input
@@ -68,13 +68,13 @@ function Inicio() {
               type="submit"
               className="bg-[#6834FF] text-textoPrincipal w-57 rounded-xl py-2 font-bold mt-5 cursor-pointer"
             >
-              Inciar Sesión
+              Registrarse
             </button>
 
             <div className="text-xs flex mt-5 space-x-1 ">
-              <p className="text-textoSecundario">¿No tienes cuenta?</p>
-              <Link to="/registro" className="text-primario font-bold">
-                Regístrase
+              <p className="text-textoSecundario">¿Ya tienes cuenta?</p>
+              <Link to="/" className="text-primario font-bold">
+                Iniciar Sesión
               </Link>
             </div>
           </div>
@@ -84,4 +84,4 @@ function Inicio() {
   );
 }
 
-export default Inicio;
+export default Registro;

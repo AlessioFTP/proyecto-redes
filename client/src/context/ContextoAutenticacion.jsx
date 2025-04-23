@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import {
   peticionIniciarSesion,
   peticionVerificarToken,
+  peticionRegistro,
 } from "../api/autenticar";
 
 export const ContextoAutenticacion = createContext();
@@ -81,11 +82,26 @@ export const ProveedorAutenticacion = ({ children }) => {
     setUsuario(null);
   };
 
+  const registrarse = async (usuario) => {
+    try {
+      const res = await peticionRegistro(usuario);
+      setEstaAutenticado(true);
+      setUsuario(res.data);
+    } catch (error) {
+      setErrores(
+        Array.isArray(error.response.data.error)
+          ? error.response.data.error
+          : [error.response.data.error]
+      );
+    }
+  };
+
   return (
     <ContextoAutenticacion.Provider
       value={{
         iniciarSesion,
         cerrarSesion,
+        registrarse,
         usuario,
         errores,
         cargando,

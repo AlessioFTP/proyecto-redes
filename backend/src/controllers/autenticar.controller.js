@@ -19,7 +19,15 @@ export const registro = async (req, res) => {
     };
 
     crearUsuario(nuevoUsuario);
-    return res.status(201).json(["Registro exitoso"]);
+    
+    const token = await crearTokenAcceso({
+      nombreUsuario: nombreUsuario,
+    });
+
+    res.cookie("token", token);
+    res.json({
+      nombreUsuario: nombreUsuario,
+    });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }
@@ -31,15 +39,13 @@ export const iniciarSesion = async (req, res) => {
   try {
     const usuarioEncontrado = await buscarUsuario(nombreUsuario);
 
-    if (!usuarioEncontrado) 
+    if (!usuarioEncontrado)
       return res.status(400).json({ error: "Usuario o clave incorrecta" });
-    
 
     const claveCoincide = await bcrypt.compare(clave, usuarioEncontrado.clave);
 
-    if (!claveCoincide) 
+    if (!claveCoincide)
       return res.status(400).json({ error: "Usuario o clave incorrecta" });
-    
 
     const token = await crearTokenAcceso({
       nombreUsuario: usuarioEncontrado.nombreUsuario,
