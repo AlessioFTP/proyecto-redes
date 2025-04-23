@@ -1,0 +1,1 @@
+export const TOKEN = "Token usado en el proyecto de redes"
